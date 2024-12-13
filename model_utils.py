@@ -1,8 +1,8 @@
-import pandas as pd
 from gensim import corpora, models
-import re
 from nltk.corpus import stopwords
+import pandas as pd
 import ast
+import re
 
 class ModelUtils:
     def __init__(self):
@@ -27,11 +27,12 @@ class ModelUtils:
         })
 
     def load_model_and_data(self):
+        print('\033[34m' + 'Model is Loading' + '\033[0m')
         reviews_df = pd.read_csv('./data/real_reviews.csv')
         reviews_df['processed_text'] = reviews_df['processed_text'].apply(self.ensure_list_format)
         self.lda_model, self.dictionary, _ = self.load_lda_model(reviews_df['processed_text'])
         self.model_loaded = True
-        print('Model is Loaded')
+        print('\033[34m' + 'Model is Loaded' + '\033[0m')
 
     def ensure_list_format(self, text):
         if isinstance(text, str):
