@@ -107,7 +107,11 @@ def get_restaurants():
     except ValueError:
         return jsonify({"error": "Invalid format for topic. It should be a comma-separated list of numbers."}), 400
 
-    restaurants = get_restaurants_within_coordinates(start_lat, start_lng, end_lat, end_lng)
+    try:
+        restaurants = get_restaurants_within_coordinates(start_lat, start_lng, end_lat, end_lng)
+    except Exception as e:
+        return jsonify({"error": "Failed to access the database", "details": str(e)}), 500
+
     sorted_restaurants = calculate_cosine_similarity(score_vector, restaurants)
 
     total_items = len(sorted_restaurants)
@@ -125,6 +129,7 @@ def get_restaurants():
     }
 
     return jsonify(response)
+
 
 # Load the model in a separate thread
 model_thread = threading.Thread(target=model_utils.load_model_and_data)
