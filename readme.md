@@ -1,4 +1,4 @@
-# WebSystem-HW5
+# WebSystem-HW5-Backend
 ---
 > **채팅 기반 음식점 추천 시스템 - Chatstaurant**
 
@@ -32,6 +32,9 @@ pip install -r requirements.txt
 GOOGLE_MAP_KEY=[YOUR_KEY]
 DATABASE_URL=[YOUR_DATABASE]
 ```
+
+- `GOOGLE_MAP_KEY`: 구글 맵 API 키, 구글의 Places API, Map API를 사용하기 위해 필요합니다.
+- `DATABASE_URL`: 데이터베이스 URL, `mysql+pymysql://[username]:[password]@[host]:[port]/[database]` 형식으로 입력합니다.
 
 ---
 
